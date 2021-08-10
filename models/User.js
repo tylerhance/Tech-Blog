@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const bcrypt = require('bcryp†');
+// const bcrypt = require('bcryp†');
 const { beforeCreate, beforeUpdate } = require('./Comment');
 
 class User extends Model {
@@ -45,3 +45,5 @@ User.init({
         underscored: true,
         modelName: 'user'
 });
+
+module.exports = User;
