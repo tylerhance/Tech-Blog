@@ -13,14 +13,14 @@ const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-    secret: 'super secret secret',
+    secret: 'Super secret secret',
     cookie: {
         maxAge: 60 * 60 * 1000,
         // httpOnly: true,
         // secure: false,
         // sameSite: 'strict',
       },
-      resave: true,
+      resave: false,
       saveUninitialized: true,
       store: new SequelizeStore({
         db: sequelize
@@ -40,7 +40,7 @@ const sess = {
     app.use(routes);
     
     sequelize.sync({ force: false }).then(() => {
-      app.listen(PORT, () => console.log(`Now listening`));
+      app.listen(PORT, () => console.log(`Now listening on port: ${PORT}`));
     });
   
  
