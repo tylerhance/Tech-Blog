@@ -1,12 +1,14 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../../models');
+const { Post, User, Comment } = require('../models');
 
-router.get('/', withAuth, (req, res) => {
+
+router.get('/', (req, res) => {
+    console.log(req.session);
     Post.findAll({
         // where: {
-        //     user_id: req.params.user_id
+        //     user_id: req.params.user_id,
         // },
+        subQuery: false,
             attributes: ['id', 'title', 'content', 'created_at'],
             include: [{
                 model: Comment,
@@ -21,9 +23,10 @@ router.get('/', withAuth, (req, res) => {
             attributes: ['username']
             }
         ]
+    
     })
     .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        const posts = dbPostData.map((post) => post.get({ plain: true }));
         res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
@@ -78,7 +81,7 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
-outer.get('/posts-comments', (req, res) => {
+router.get('/posts-comments', (req, res) => {
     Post.findOne({
         where: {
             id: req.params.id

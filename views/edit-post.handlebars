@@ -5,10 +5,10 @@
         <input name="post-title" type="text" value="{{post.title}}" class="form-input"/>
         <label class="form-label" for="content">Content</label>
         <input name="content" type="text" value="{{post.content}}" class="form-input"/>
-        <button type="submit" class="btn">Update Post</button>
-        <button type="button" class="delete-post-btn btn">Delete Post</button>
+        <button type="submit" name="send" value="update" class="edit-post-btn btn">Update Post</button>
+        <button type="button" name="send" value="delete" class="delete-post-btn btn">Delete Post</button>
     </form>
 </div>
 
-<script src="/public/js/editPost.js"></script>
-<script src="/public/js/deletePost.js"></script>
+<script src="/js/editPost.js"></script>
+<script src="/js/deletePost.js"></script>

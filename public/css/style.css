@@ -3,7 +3,7 @@
 }
 
 :root {
-    --primary: #666492 ;
+    --primary:#7d9bb6 ;
     --secondary: #637fb3;
     --seagreen: #87acac;
     --light: #dacfd5;
@@ -58,9 +58,9 @@ p {
     width: 100%;
     display: block;
     margin: 5px 0;
-    border-radius: .4rem;
+    border-radius: .5rem;
     color: white;
-    background-color: var(--light);
+    background-color: #0a73d1;
     transform: translate(-1px, -1px);
 }
 
@@ -199,7 +199,7 @@ footer {
 
 .form-input {
     width: 100%;
-    padding: 3%;
+    padding: 1%;
     margin: 5px 0;
     font-size: 1rem;
     border: 2px solid var(--light);

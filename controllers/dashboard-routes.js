@@ -1,12 +1,11 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection');
-const withAuth = require('../../utils/auth');
+const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
         where: {
-            user_id: req.params.user_id
+            user_id: req.session.user_id
         },
             attributes: ['id', 'title', 'content', 'created_at'],
             include: [{
@@ -33,7 +32,7 @@ router.get('/', withAuth, (req, res) => {
     })
 });
 
-router.get('edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
     Post.findOne({
         where: {
             id: req.params.id
@@ -42,7 +41,16 @@ router.get('edit/:id', withAuth, (req, res) => {
         include: [{
             model: User,
             attributes: ['username']
-        }]
+        },
+        {
+            model: Comment,
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+        }
+        ]
     })
     .then(dbPostData => {
         if(!dbPostData){

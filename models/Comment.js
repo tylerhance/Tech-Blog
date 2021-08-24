@@ -8,8 +8,9 @@ Comment.init({
         primaryKey: true,
         autoIncrement: true
     },
-    body: {
+    comment_text: { // comment_text was body
         type: DataTypes.STRING,
+        allowNull: false,
         validate:{ len: [3] }
     },
     user_id: {
